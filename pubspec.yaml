@@ -1,0 +1,46 @@
+name: shurjopay_sdk
+description: Flutter shurjoPay SDK. shurjoPay, one of the leading payment gateways in Bangladesh, with technology and simplicity to build the most secure payment experience for your business.
+homepage: https://github.com/smukhidev/fluttre
+issue_tracker: https://github.com/smukhidev/fluttre/issues?q=is%3Aissue+is%3Aopen
+version: 1.2.8
+
+environment:
+  sdk: ">=2.18.1 <3.0.0"
+  flutter: ">=2.5.0"
+
+#  sdk: ">=2.12.0 <3.0.0"
+#  flutter: ">=1.20.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_web_plugins:
+    sdk: flutter
+
+  connectivity_plus: ^2.3.7
+  http: ^0.13.5
+  webview_flutter: ^3.0.4
+
+#  connectivity_plus: ^2.1.0
+#  http: ^0.13.4
+#  webview_flutter: ^3.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+#  flutter_lints: ^1.0.0
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: com.shurjopay.sdk.shurjopay_sdk
+        pluginClass: ShurjopaySdkPlugin
+      ios:
+        pluginClass: ShurjopaySdkPlugin
+      web:
+        pluginClass: ShurjopaySdkWeb
+        fileName: shurjopay_sdk_web.dart
+
