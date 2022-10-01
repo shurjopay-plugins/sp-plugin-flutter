@@ -98,7 +98,7 @@ class WebViewContainerState extends State<WebViewContainer> {
               },
               onPageFinished: (String url) {},
               onPageStarted: (String url) {
-                if (url.contains("cancel_url")) {
+                if (url.contains(requestData.cancelUrl.toString())) {
                   Navigator.pop(context);
                   setState(() {
                     ErrorSuccess errorSuccess = ErrorSuccess(ESType.HTTP_CANCEL, null, "${AppConstants.PAYMENT_CANCELLED}");
@@ -106,10 +106,10 @@ class WebViewContainerState extends State<WebViewContainer> {
                   });
                   return;
                 }
-                if (url.contains("return_url") || url.contains("order_id")) {
+                if (url.contains(requestData.returnUrl.toString()) && url.contains("order_id")) {
                   _verifyPayment(context, sdkType);
+                  return;
                 }
-                return;
               },
             ),
           ),
