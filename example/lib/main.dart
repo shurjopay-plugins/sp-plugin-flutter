@@ -1,157 +1,118 @@
 import 'dart:math';
 
-import "package:flutter/material.dart";
-import "package:shurjopay_sdk/shurjopay_sdk.dart";
+import 'package:flutter/material.dart';
+import 'package:pro_widgets/pro_widgets.dart';
+import 'package:shurjopay/models/payment_verification_model.dart';
+import 'package:shurjopay/models/shurjopay_request_model.dart';
+import 'package:shurjopay/models/shurjopay_response_model.dart';
+import 'package:shurjopay/shurjopay.dart';
+import 'package:shurjopay/utilities/functions.dart';
 
-/// main method for app entry point.
 void main() {
-  runApp(const MaterialApp(home: MyApp()));
+  initializeShurjopay(environment: "sandbox");
+  runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  MyAppState createState() => MyAppState();
-}
-
-class MyAppState extends State<MyApp> {
-  /// shurjoPay SDK declaration.
-  late ShurjopaySdk shurjopaySdk;
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text("shurjoPay SDK - shurjoMukhi Ltd"),
-        ),
-        body: Center(
-          child: ElevatedButton(
-            child: const Text("Pay By shurjoPay SDK"),
-            onPressed: () {
-              /// Call onShurjoPaySdk method with BuildContext.
-              onShurjoPaySdk(context);
-            },
+      title: 'shurjoPay Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  ShurjoPay shurjoPay = ShurjoPay();
+  ShurjopayResponseModel shurjopayResponseModel = ShurjopayResponseModel();
+  ShurjopayVerificationModel shurjopayVerificationModel =
+      ShurjopayVerificationModel();
+
+  TextEditingController nameFieldController = TextEditingController();
+  TextEditingController amountFieldController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('shurjoPay Demo'),
+        backgroundColor: Colors.green,
+      ),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ProTextField(
+                hint: "Enter Name",
+                controller: nameFieldController,
+                height: 45,
+              ),
+              const ProGap(y: 16),
+              ProTextField(
+                hint: "Enter Amount",
+                controller: amountFieldController,
+                height: 45,
+              ),
+              const ProGap(y: 16),
+              ProButtonBasic(
+                text: "Pay",
+                fontSize: 18,
+                backgroundColor: Colors.green,
+                height: 45,
+                width: double.infinity,
+                onTap: () async {
+                  FocusScope.of(context).unfocus();
+                  ShurjopayRequestModel shurjopayRequestModel =
+                      ShurjopayRequestModel(
+                    userName: "sp_sandbox",
+                    password: "pyyk97hu&6u6",
+                    prefix: "sp",
+                    currency: "BDT",
+                    amount: double.parse(amountFieldController.text),
+                    orderID: "sp${Random().nextInt(1000)}",
+                    discountAmount: 0,
+                    discountPercentage: 0,
+                    customerName: nameFieldController.text,
+                    customerPhoneNumber: "01711486915",
+                    customerAddress: "customer address",
+                    customerCity: "customer city",
+                    customerPostcode: "1212",
+                    returnURL: "https://www.sandbox.shurjopayment.com/response",
+                    cancelURL: "https://www.engine.shurjopayment.com/response",
+                    clientIP: "127.0.0.1",
+                  );
+                  shurjopayResponseModel = await shurjoPay.makePayment(
+                    context: context,
+                    shurjopayRequestModel: shurjopayRequestModel,
+                  );
+                  nameFieldController.clear();
+                  amountFieldController.clear();
+                  if (shurjopayResponseModel.status == true) {
+                    shurjopayVerificationModel = await shurjoPay.verifyPayment(
+                      orderID: shurjopayResponseModel.shurjopayOrderID!,
+                    );
+                  }
+                },
+              )
+            ],
           ),
         ),
       ),
     );
-  }
-
-  /// onShurjoPaySdk Method
-  ///
-  /// onShurjoPaySdk(BuildContext context) accept BuildContext parameter.
-  void onShurjoPaySdk(BuildContext context) {
-    /// shurjoPay SDK Request Data
-    ///
-    /// TODO request data model setup
-    /// RequiredRequestData is user for shurjoPay payment request.
-    RequiredRequestData requiredRequestData = requestData;
-    requiredRequestData.onPrint();
-
-    /// shurjoPay Response Listener
-    ///
-    /// TODO request response listener setup
-    /// After request in shurjoPay SDK return and respons by this listener.
-    shurjopaySdk = ShurjopaySdk(
-      /// TODO you get success response, if the transection is succefully completed.
-      onSuccess: (BuildContext context, ErrorSuccess errorSuccess) {
-        switch (errorSuccess.esType) {
-          case ESType.INTERNET_SUCCESS:
-            debugPrint(
-                "DEBUG_LOG_PRINT: surjoPay SDK SUCCESS: ${errorSuccess.message}");
-            //return;
-            break;
-          case ESType.SUCCESS:
-            //debugPrint("DEBUG_LOG_PRINT: surjoPay SDK SUCCESS: ${errorSuccess.message}");
-            onTransaction(errorSuccess.transactionInfo);
-            //return;
-            break;
-        }
-        debugPrint(
-            "DEBUG_LOG_PRINT: surjoPay SDK SUCCESS: ${errorSuccess.esType.name}");
-        if (errorSuccess.isLastCallback) {
-          //Navigator.of(context, rootNavigator: true).pop();
-        }
-      },
-
-      /// TODO you get failed response, if the transection is failed or canceled.
-      onFailed: (BuildContext context, ErrorSuccess errorSuccess) {
-        switch (errorSuccess.esType) {
-          case ESType.INTERNET_ERROR:
-            debugPrint(
-                "DEBUG_LOG_PRINT: surjoPay SDK ERROR: ${errorSuccess.message}");
-            //return;
-            break;
-          case ESType.HTTP_CANCEL:
-            debugPrint(
-                "DEBUG_LOG_PRINT: surjoPay SDK ERROR: ${errorSuccess.message}");
-            //return;
-            break;
-          case ESType.ERROR:
-            debugPrint(
-                "DEBUG_LOG_PRINT: surjoPay SDK ERROR: ${errorSuccess.message}");
-            //return;
-            break;
-        }
-        debugPrint(
-            "DEBUG_LOG_PRINT: surjoPay SDK ERROR: ${errorSuccess.message}");
-        if (errorSuccess.isLastCallback) {
-          //Navigator.of(context, rootNavigator: true).pop();
-        }
-      },
-    );
-
-    /// shurjoPay SDK Payment Request
-    ///
-    /// TODO payment request setup
-    /// shurjoPay payment request by makePayment method.
-    /// It takes context, sdkType and request data.
-    shurjopaySdk.makePayment(
-      context: context,
-
-      /// TODO live/sandbox request
-      sdkType: AppConstants.SDK_TYPE_SANDBOX,
-      data: requiredRequestData,
-    );
-  }
-
-  void onTransaction(TransactionInfo? transactionInfo) {
-    debugPrint("DEBUG_LOG_PRINT: surjoPay SDK SUCCESS TransactionInfo:");
-    transactionInfo?.onPrint();
-  }
-
-  RequiredRequestData get requestData {
-    int orderId = Random().nextInt(1000);
-    RequiredRequestData requiredRequestData = RequiredRequestData(
-      username: "sp_sandbox",
-      password: "pyyk97hu&6u6",
-      prefix: "NOK",
-      currency: "BDT",
-      amount: 1,
-      orderId: "NOK$orderId",
-      discountAmount: 0,
-      discPercent: 0,
-      customerName: "customer name",
-      customerPhone: "01711486915",
-      customerEmail: null,
-      customerAddress: "customer address",
-      customerCity: "customer city",
-      customerState: null,
-      customerPostcode: "1212",
-      customerCountry: null,
-      returnUrl: "https://www.sandbox.shurjopayment.com/return_url",
-      cancelUrl: "https://www.engine.shurjopayment.com/cancel_url",
-      clientIp: "127.0.0.1",
-      value1: null,
-      value2: null,
-      value3: null,
-      value4: null,
-    );
-    //requiredRequestData = ShurjoPayUser().getSandboxUser();
-    //debugPrint("DEBUG_LOG_PRINT: REQUEST_DATA: ${requiredRequestData}");
-    return requiredRequestData;
   }
 }
