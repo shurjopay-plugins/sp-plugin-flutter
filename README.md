@@ -17,8 +17,8 @@ And that's all! To know more about its usage please check the details below.
 
   ```dart
   void  main() {
-  initializeShurjopay(environment: "sandbox");
-  runApp(const  MyApp());
+    initializeShurjopay(environment: "sandbox");
+    runApp(const  MyApp());
   }
   ```
 
