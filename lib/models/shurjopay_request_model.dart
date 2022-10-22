@@ -1,9 +1,20 @@
 class ShurjopayRequestModel {
+  /// shurjoPay merchant user name
   final String userName;
+
+  /// shurjoPay merchant password
   final String password;
+
+  /// Any string not more than 5 characters. It distinguishes the stores of a merchant.
   final String prefix;
+
+  /// ISO format,(only BDT and USD are allowed)
   final String currency;
+
+  /// Transaction amount
   final double amount;
+
+  /// Unique Order Id from merchant store.
   final String orderID;
   final double? discountAmount;
   final double? discountPercentage;
@@ -18,9 +29,17 @@ class ShurjopayRequestModel {
   final String returnURL;
   final String cancelURL;
   final String? clientIP;
+
+  /// Additional field
   final String? value1;
+
+  /// Additional field
   final String? value2;
+
+  /// Additional field
   final String? value3;
+
+  /// Additional field
   final String? value4;
 
   ShurjopayRequestModel({

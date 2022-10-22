@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:pro_widgets/pro_widgets.dart';
 import 'package:shurjopay/models/payment_verification_model.dart';
@@ -84,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     prefix: "sp",
                     currency: "BDT",
                     amount: double.parse(amountFieldController.text),
-                    orderID: "sp${Random().nextInt(1000)}",
+                    orderID: "sp1ab2c3d4",
                     discountAmount: 0,
                     discountPercentage: 0,
                     customerName: nameFieldController.text,
@@ -100,13 +98,13 @@ class _MyHomePageState extends State<MyHomePage> {
                     context: context,
                     shurjopayRequestModel: shurjopayRequestModel,
                   );
-                  nameFieldController.clear();
-                  amountFieldController.clear();
                   if (shurjopayResponseModel.status == true) {
                     shurjopayVerificationModel = await shurjoPay.verifyPayment(
                       orderID: shurjopayResponseModel.shurjopayOrderID!,
                     );
                   }
+                  nameFieldController.clear();
+                  amountFieldController.clear();
                 },
               )
             ],
