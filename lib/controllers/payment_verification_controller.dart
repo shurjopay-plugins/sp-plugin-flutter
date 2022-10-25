@@ -15,11 +15,16 @@ class PaymentVerificationController {
       payload: {"order_id": orderID},
     );
 
-    if (response.data != null && response.data is String) {
-      List<dynamic> decodedResponse =
-          List<dynamic>.from(json.decode(response.data));
-      return ShurjopayVerificationModel.fromJson(decodedResponse.first);
+    if (response.data != null) {
+      if (response.data is String) {
+        List<dynamic> decodedResponse =
+            List<dynamic>.from(json.decode(response.data));
+        return ShurjopayVerificationModel.fromJson(decodedResponse.first);
+      }
+      return ShurjopayVerificationModel.fromJson(
+        List<dynamic>.from(response.data).first,
+      );
     }
-    return ShurjopayVerificationModel.fromJson(response.data);
+    return ShurjopayVerificationModel();
   }
 }

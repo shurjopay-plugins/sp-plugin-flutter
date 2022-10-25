@@ -22,8 +22,8 @@ class PaymentController {
     required ShurjopayRequestModel shurjopayRequestModel,
   }) async {
     TokenRequestModel tokenRequestModel = TokenRequestModel(
-      userName: shurjopayRequestModel.userName,
-      password: shurjopayRequestModel.password,
+      userName: shurjopayRequestModel.configs.userName,
+      password: shurjopayRequestModel.configs.password,
     );
     TokenResponseModel? tokenResponseModel = TokenResponseModel();
 
@@ -44,13 +44,13 @@ class PaymentController {
         CheckoutRequestModel checkoutRequestModel = CheckoutRequestModel(
           token: tokenResponseModel.token!,
           storeID: tokenResponseModel.storeId!.toString(),
-          prefix: shurjopayRequestModel.prefix,
+          prefix: shurjopayRequestModel.configs.prefix,
           currency: shurjopayRequestModel.currency,
           amount: shurjopayRequestModel.amount,
           orderID: shurjopayRequestModel.orderID,
           discountAmount: shurjopayRequestModel.discountAmount,
           discountPercentage: shurjopayRequestModel.discountPercentage,
-          clientIP: shurjopayRequestModel.clientIP,
+          clientIP: shurjopayRequestModel.configs.clientIP,
           customerName: shurjopayRequestModel.customerName,
           customerPhoneNumber: shurjopayRequestModel.customerPhoneNumber,
           customerEmail: shurjopayRequestModel.customerEmail,

@@ -30,11 +30,18 @@ And that's all! To know more about its usage please check the details below.
   //Create a shurjoPay object.
   ShurjoPay shurjoPay = ShurjoPay();
 
-  //Create payment request model and initialize values.
-  ShurjopayRequestModel shurjopayRequestModel = ShurjopayRequestModel(
+
+  //Create ShurjopayConfigs object and set confgs. This config will be passed into request model.
+  ShurjopayConfigs shurjopayConfigs = ShurjopayConfigs(
+    prefix: "sp",
     userName: "sp_sandbox",
     password: "pyyk97hu&6u6",
-    prefix: "sp",
+    clientIP: "127.0.0.1",
+  );
+
+  //Create payment request model and initialize values.
+  ShurjopayRequestModel shurjopayRequestModel = ShurjopayRequestModel(
+    configs: shurjopayConfigs,
     currency: "BDT",
     amount: 1000,
     orderID: "sp1ab2c3d4",
@@ -47,7 +54,6 @@ And that's all! To know more about its usage please check the details below.
     customerPostcode: "1212",
     returnURL: "return_url",
     cancelURL: "cancel_url",
-    clientIP: "127.0.0.1",
   );
 
   //Create a payment response model object to store the makePayment() method results.

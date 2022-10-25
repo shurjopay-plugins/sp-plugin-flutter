@@ -1,12 +1,8 @@
+import 'package:shurjopay/models/config.dart';
+
 class ShurjopayRequestModel {
-  /// shurjoPay merchant user name
-  final String userName;
-
-  /// shurjoPay merchant password
-  final String password;
-
-  /// Any string not more than 5 characters. It distinguishes the stores of a merchant.
-  final String prefix;
+  /// Pass prefix, user name, password and client ip as configs here
+  ShurjopayConfigs configs;
 
   /// ISO format,(only BDT and USD are allowed)
   final String currency;
@@ -28,7 +24,6 @@ class ShurjopayRequestModel {
   final String? customerCountry;
   final String returnURL;
   final String cancelURL;
-  final String? clientIP;
 
   /// Additional field
   final String? value1;
@@ -43,9 +38,7 @@ class ShurjopayRequestModel {
   final String? value4;
 
   ShurjopayRequestModel({
-    required this.userName,
-    required this.password,
-    required this.prefix,
+    required this.configs,
     required this.currency,
     required this.amount,
     required this.orderID,
@@ -61,7 +54,6 @@ class ShurjopayRequestModel {
     this.customerCountry,
     required this.returnURL,
     required this.cancelURL,
-    this.clientIP,
     this.value1,
     this.value2,
     this.value3,

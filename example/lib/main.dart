@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pro_widgets/pro_widgets.dart';
+import 'package:shurjopay/models/config.dart';
 import 'package:shurjopay/models/payment_verification_model.dart';
 import 'package:shurjopay/models/shurjopay_request_model.dart';
 import 'package:shurjopay/models/shurjopay_response_model.dart';
@@ -35,6 +36,14 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   ShurjoPay shurjoPay = ShurjoPay();
+
+  ShurjopayConfigs shurjopayConfigs = ShurjopayConfigs(
+    prefix: "sp",
+    userName: "sp_sandbox",
+    password: "pyyk97hu&6u6",
+    clientIP: "127.0.0.1",
+  );
+
   ShurjopayResponseModel shurjopayResponseModel = ShurjopayResponseModel();
   ShurjopayVerificationModel shurjopayVerificationModel =
       ShurjopayVerificationModel();
@@ -77,9 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   FocusScope.of(context).unfocus();
                   ShurjopayRequestModel shurjopayRequestModel =
                       ShurjopayRequestModel(
-                    userName: "sp_sandbox",
-                    password: "pyyk97hu&6u6",
-                    prefix: "sp",
+                    configs: shurjopayConfigs,
                     currency: "BDT",
                     amount: double.parse(amountFieldController.text),
                     orderID: "sp1ab2c3d4",
@@ -92,7 +99,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     customerPostcode: "1212",
                     returnURL: "https://www.sandbox.shurjopayment.com/response",
                     cancelURL: "https://www.engine.shurjopayment.com/response",
-                    clientIP: "127.0.0.1",
                   );
                   shurjopayResponseModel = await shurjoPay.makePayment(
                     context: context,
