@@ -30,17 +30,9 @@ And that's all! To know more about its usage please check the details below.
   //Create a shurjoPay object.
   ShurjoPay shurjoPay = ShurjoPay();
 
-
-  //Create ShurjopayConfigs object and set confgs. This config will be passed into request model.
-  ShurjopayConfigs shurjopayConfigs = ShurjopayConfigs(
-    prefix: "sp",
-    userName: "sp_sandbox",
-    password: "pyyk97hu&6u6",
-    clientIP: "127.0.0.1",
-  );
-
   //Create payment request model and initialize values.
   ShurjopayRequestModel shurjopayRequestModel = ShurjopayRequestModel(
+    // Create ShurjopayConfigs object somewhere and set values in it, so that you can pass it here.
     configs: shurjopayConfigs,
     currency: "BDT",
     amount: 1000,
