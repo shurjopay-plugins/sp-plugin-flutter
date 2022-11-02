@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:pro_widgets/pro_widgets.dart';
 import 'package:shurjopay/models/config.dart';
@@ -105,9 +107,15 @@ class _MyHomePageState extends State<MyHomePage> {
                     shurjopayRequestModel: shurjopayRequestModel,
                   );
                   if (shurjopayResponseModel.status == true) {
-                    shurjopayVerificationModel = await shurjoPay.verifyPayment(
-                      orderID: shurjopayResponseModel.shurjopayOrderID!,
-                    );
+                    try {
+                      shurjopayVerificationModel =
+                          await shurjoPay.verifyPayment(
+                        orderID: shurjopayResponseModel.shurjopayOrderID!,
+                      );
+                      print(shurjopayVerificationModel.spMessage);
+                    } catch (error) {
+                      print(error.toString());
+                    }
                   }
                   nameFieldController.clear();
                   amountFieldController.clear();
