@@ -7,7 +7,7 @@ class ShurjopayConfigs {
 
   /// Any string not more than 5 characters. It distinguishes the stores of a merchant.
   final String prefix;
-  String clientIP;
+  final String clientIP;
 
   ShurjopayConfigs({
     required this.prefix,

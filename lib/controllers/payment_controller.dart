@@ -26,7 +26,6 @@ class PaymentController {
       password: shurjopayRequestModel.configs.password,
     );
     TokenResponseModel? tokenResponseModel = TokenResponseModel();
-
     try {
       tokenResponseModel = await _tokenController.getToken(
         tokenRequestModel: tokenRequestModel,
@@ -104,6 +103,7 @@ class PaymentController {
           );
         }
       } else {
+        spPop(context: context);
         return InternalResponseModel(
           status: false,
           errorCode: tokenResponseModel?.spCode,

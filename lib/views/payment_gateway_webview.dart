@@ -82,7 +82,7 @@ class _PaymentGatewayWebviewState extends State<PaymentGatewayWebview> {
                       color: Colors.black,
                       fontWeight: FontWeight.w500,
                     ),
-                  )
+                  ),
           ],
         ),
       ),
