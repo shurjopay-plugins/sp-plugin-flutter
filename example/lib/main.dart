@@ -112,7 +112,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           await shurjoPay.verifyPayment(
                         orderID: shurjopayResponseModel.shurjopayOrderID!,
                       );
-                      print(shurjopayVerificationModel.spMessage);
+                      if (shurjopayVerificationModel.spCode == "1000") {
+                        print("Payment Varified");
+                      }
                     } catch (error) {
                       print(error.toString());
                     }

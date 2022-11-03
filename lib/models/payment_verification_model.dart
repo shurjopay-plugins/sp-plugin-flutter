@@ -1,3 +1,5 @@
+import 'package:shurjopay/utilities/value_parser.dart';
+
 class ShurjopayVerificationModel {
   int? id;
   String? orderId;
@@ -16,7 +18,7 @@ class ShurjopayVerificationModel {
   String? invoiceNo;
   String? bankStatus;
   String? customerOrderId;
-  int? spCode;
+  String? spCode;
   String? spMessage;
   String? name;
   String? email;
@@ -83,7 +85,9 @@ class ShurjopayVerificationModel {
     invoiceNo = json['invoice_no'];
     bankStatus = json['bank_status'];
     customerOrderId = json['customer_order_id'];
-    spCode = json['sp_code'];
+    spCode = json['sp_code'] != null
+        ? ValueParser.intToSring(json['sp_code'])
+        : null;
     spMessage = json['sp_message'];
     name = json['name'];
     email = json['email'];
