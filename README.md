@@ -62,9 +62,16 @@ And that's all! To know more about its usage please check the details below.
 
   //If the status is true from makePayment() method result then, verify the payment by calling verifyPayment() method whenever you want.
   if (shurjopayResponseModel.status == true) {
-    shurjopayVerificationModel = await shurjoPay.verifyPayment(
-      orderID: shurjopayResponseModel.shurjopayOrderID!,
-    );
+    try {
+      shurjopayVerificationModel = await shurjoPay.verifyPayment(
+        orderID: shurjopayResponseModel.shurjopayOrderID!,
+      );
+      if (shurjopayVerificationModel.spCode == "1000") {
+        print("Payment Varified");
+      }
+    } catch (error) {
+      print(error.toString());
+    }
   }
   ```
 
