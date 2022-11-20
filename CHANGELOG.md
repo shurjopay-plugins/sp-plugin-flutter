@@ -1,3 +1,7 @@
+## 2.0.1
+
+- Payment verification bug fixed
+
 ## 2.0.0
 
 - Flutter package v2.x developed from scratch, replaces previous release v1.x
