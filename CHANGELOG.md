@@ -1,3 +1,7 @@
+## 2.0.2
+
+- bug fixing
+
 ## 2.0.1
 
 - Payment verification bug fixed
