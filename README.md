@@ -36,6 +36,7 @@ And that's all! To know more about its usage please check the details below.
     configs: shurjopayConfigs,
     currency: "BDT",
     amount: 1000,
+    //Remember to use prefix before order id. Ex: if prefix is 'test' then order id should be test123456
     orderID: "sp1ab2c3d4",
     discountAmount: 0,
     discountPercentage: 0,

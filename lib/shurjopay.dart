@@ -34,8 +34,8 @@ class ShurjoPay {
     );
     printer("===== shurjoPay Log =====");
     printer("STATUS: ${_internalResponseModel.status}");
-    printer("CODE: ${_internalResponseModel.errorCode}");
     printer("MESSAGE: ${_internalResponseModel.message}");
+    printer("ERROR_CODE: ${_internalResponseModel.errorCode}");
     return ShurjopayResponseModel(
       status: _internalResponseModel.status,
       errorCode: _internalResponseModel.errorCode,
