@@ -10,7 +10,7 @@ class ShurjopayRequestModel {
   /// Transaction amount
   final double amount;
 
-  /// Unique Order Id from merchant store.
+  /// Unique Order Id from merchant store. Remember to use prefix before order id. Ex: if prefix is 'test' then order id should be test123456
   final String orderID;
   final double? discountAmount;
   final double? discountPercentage;

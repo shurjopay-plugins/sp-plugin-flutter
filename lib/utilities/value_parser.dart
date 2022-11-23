@@ -7,6 +7,14 @@ class ValueParser {
     }
   }
 
+  static String intDoubleToSring(dynamic value) {
+    if (value is int || value is double) {
+      return value.toString();
+    } else {
+      return value;
+    }
+  }
+
   static int stringToInt(dynamic value) {
     if (value is String) {
       return int.parse(value);

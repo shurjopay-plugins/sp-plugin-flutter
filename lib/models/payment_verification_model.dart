@@ -4,12 +4,12 @@ class ShurjopayVerificationModel {
   int? id;
   String? orderId;
   String? currency;
-  int? amount;
-  int? payableAmount;
-  int? discsountAmount;
+  String? amount;
+  String? payableAmount;
+  String? discsountAmount;
   int? discPercent;
   String? receivedAmount;
-  int? usdAmt;
+  String? usdAmt;
   int? usdRate;
   String? cardHolderName;
   String? cardNumber;
@@ -71,12 +71,22 @@ class ShurjopayVerificationModel {
     id = json['id'];
     orderId = json['order_id'];
     currency = json['currency'];
-    amount = json['amount'];
-    payableAmount = json['payable_amount'];
-    discsountAmount = json['discsount_amount'];
+    amount = json['amount'] != null
+        ? ValueParser.intDoubleToSring(json['amount'])
+        : null;
+    payableAmount = json['payable_amount'] != null
+        ? ValueParser.intDoubleToSring(json['payable_amount'])
+        : null;
+    discsountAmount = json['discsount_amount'] != null
+        ? ValueParser.intDoubleToSring(json['discsount_amount'])
+        : null;
     discPercent = json['disc_percent'];
-    receivedAmount = json['received_amount'];
-    usdAmt = json['usd_amt'];
+    receivedAmount = json['received_amount'] != null
+        ? ValueParser.intDoubleToSring(json['received_amount'])
+        : null;
+    usdAmt = json['usd_amt'] != null
+        ? ValueParser.intDoubleToSring(json['usd_amt'])
+        : null;
     usdRate = json['usd_rate'];
     cardHolderName = json['card_holder_name'];
     cardNumber = json['card_number'];

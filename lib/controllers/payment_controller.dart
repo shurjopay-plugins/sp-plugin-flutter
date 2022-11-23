@@ -71,7 +71,8 @@ class PaymentController {
         );
         spPop(context: context);
         if (checkoutResponseModel != null &&
-            checkoutResponseModel.checkoutUrl != null) {
+            checkoutResponseModel.checkoutUrl != null &&
+            checkoutResponseModel.spOrderId != null) {
           bool? spWebViewResult;
           // ignore: use_build_context_synchronously
           spWebViewResult = await Navigator.push(
@@ -87,13 +88,14 @@ class PaymentController {
           if (spWebViewResult == true) {
             return InternalResponseModel(
               status: true,
-              message: "Payment successful.",
+              message: "Please call verifyPayment()",
               spOrderID: checkoutResponseModel.spOrderId,
             );
           } else {
             return InternalResponseModel(
-              status: false,
-              message: "Payment failed.",
+              status: true,
+              message: "Please call verifyPayment()",
+              spOrderID: checkoutResponseModel.spOrderId,
             );
           }
         } else {

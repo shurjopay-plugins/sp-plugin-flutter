@@ -99,8 +99,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     customerAddress: "customer address",
                     customerCity: "customer city",
                     customerPostcode: "1212",
-                    returnURL: "https://www.sandbox.shurjopayment.com/response",
-                    cancelURL: "https://www.engine.shurjopayment.com/response",
+                    // Live: https://www.engine.shurjopayment.com/return_url
+                    returnURL:
+                        "https://www.sandbox.shurjopayment.com/return_url",
+                    // Live: https://www.engine.shurjopayment.com/cancel_url
+                    cancelURL:
+                        "https://www.sandbox.shurjopayment.com/cancel_url",
                   );
                   shurjopayResponseModel = await shurjoPay.makePayment(
                     context: context,
@@ -112,6 +116,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           await shurjoPay.verifyPayment(
                         orderID: shurjopayResponseModel.shurjopayOrderID!,
                       );
+                      print(shurjopayVerificationModel.spCode);
+                      print(shurjopayVerificationModel.spMessage);
                       if (shurjopayVerificationModel.spCode == "1000") {
                         print("Payment Varified");
                       }
