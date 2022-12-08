@@ -1,3 +1,7 @@
+## 2.0.3
+
+- readme updated
+
 ## 2.0.2
 
 - bug fixing

@@ -1,6 +1,6 @@
 name: shurjopay
 description: Official shurjoPay flutter package for merchants or service providers to integrate our payment system with their Flutter applications.
-version: 2.0.2
+version: 2.0.3
 homepage: https://shurjomukhi.com.bd
 
 environment:

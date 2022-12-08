@@ -78,3 +78,7 @@ And that's all! To know more about its usage please check the details below.
 
 <br>
 That's all! Now you are ready to use our shurjoPay flutter package to make your payment system easy and smooth.
+
+<br>
+<br>
+<center>Author - [Shajedul Islam](https://shajedul.com)</center>
