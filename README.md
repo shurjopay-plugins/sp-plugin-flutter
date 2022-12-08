@@ -81,4 +81,4 @@ That's all! Now you are ready to use our shurjoPay flutter package to make your 
 
 <br>
 <br>
-<center>Author - [Shajedul Islam](https://shajedul.com)</center>
+<center>Author - <a href ="https://shajedul.com">Shajedul Islam<a></center>
