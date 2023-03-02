@@ -42,6 +42,7 @@ And that's all! To know more about its usage please check the details below.
     configs: shurjopayConfigs,
     currency: "BDT",
     amount: 1000,
+    //Remember to use prefix before order id. Ex: if prefix is 'test' then order id should be test123456
     orderID: "sp1ab2c3d4",
     discountAmount: 0,
     discountPercentage: 0,
@@ -83,3 +84,7 @@ And that's all! To know more about its usage please check the details below.
 
 <br>
 That's all! Now you are ready to use our shurjoPay flutter package to make your payment system easy and smooth.
+
+<br>
+<br>
+<center>Author - <a href ="https://shajedul.com">Shajedul Islam<a></center>
