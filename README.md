@@ -11,9 +11,8 @@ And that's all! To know more about its usage please check the details below.
 
 ## Adding a package dependency to an app
 
-1. Open the  ``dart pubspec.yaml ``` file located inside the app folder, and add ```dart shurjopay: ^2.0.3 ``` under dependencies.
-2. Install it
-   * From the terminal: Run ``dart flutter pub get ```.
+1. Open the ```pubspec.yaml``` file located inside the app folder and add ```shurjopay: ^2.0.3``` under dependencies.
+2. Run command ```flutter pub get``` to pull and download dependencies.
 
 ## Usage
 
