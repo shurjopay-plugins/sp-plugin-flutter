@@ -1,6 +1,6 @@
 class CheckoutResponseModel {
   String? checkoutUrl;
-  double amount;
+  num? amount;
   String? currency;
   String? spOrderId;
   String? customerOrderId;
