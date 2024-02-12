@@ -1,3 +1,8 @@
+## 2.0.4
+
+- Amount Flexible
+- Package Dependency Updated
+
 ## 2.0.3
 
 - readme updated

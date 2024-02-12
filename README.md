@@ -11,7 +11,7 @@ And that's all! To know more about its usage please check the details below.
 
 ## Adding a package dependency to an app
 
-1. Open the ```pubspec.yaml``` file located inside the app folder and add ```shurjopay: ^2.0.3``` under dependencies.
+1. Open the ```pubspec.yaml``` file located inside the app folder and add ```shurjopay: ^2.0.4``` under dependencies.
 2. Run command ```flutter pub get``` to pull and download dependencies.
 
 ## Usage
@@ -85,5 +85,11 @@ And that's all! To know more about its usage please check the details below.
 That's all! Now you are ready to use our shurjoPay flutter package to make your payment system easy and smooth.
 
 <br>
-<br>
-<center>Author - <a href ="https://shajedul.com">Shajedul Islam<a></center>
+
+## License
+
+This code is under the [MIT open source License](http://www.opensource.org/licenses/mit-license.php).
+
+#### Please [contact](https://shurjopay.com.bd/#contacts) with shurjoPay team for more detail.
+
+Copyright ©️2023 [ShurjoMukhi Limited](https://shurjomukhi.com.bd).
