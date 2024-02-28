@@ -40,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
   ShurjoPay shurjoPay = ShurjoPay();
 
   ShurjopayConfigs shurjopayConfigs = ShurjopayConfigs(
-    prefix: "sp",
+    prefix: "NOK",
     userName: "sp_sandbox",
     password: "pyyk97hu&6u6",
     clientIP: "127.0.0.1",

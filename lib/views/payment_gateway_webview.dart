@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:webview_flutter_android/webview_flutter_android.dart';
+import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
 
 class PaymentGatewayWebview extends StatefulWidget {
   final String checkoutURL;
@@ -18,13 +20,28 @@ class PaymentGatewayWebview extends StatefulWidget {
 }
 
 class _PaymentGatewayWebviewState extends State<PaymentGatewayWebview> {
+  late PlatformWebViewControllerCreationParams params;
   late WebViewController webViewController;
+
   String? currentUrl;
   int progress = 0;
   bool firstLaunchDone = false;
 
   @override
   Widget build(BuildContext context) {
+    if (WebViewPlatform.instance is WebKitWebViewPlatform) {
+      params = WebKitWebViewControllerCreationParams(
+        allowsInlineMediaPlayback: true,
+        mediaTypesRequiringUserAction: const <PlaybackMediaTypes>{},
+      );
+    } else if (WebViewPlatform.instance is AndroidWebViewController) {
+      AndroidWebViewController.enableDebugging(true);
+      (webViewController.platform as AndroidWebViewController)
+          .setMediaPlaybackRequiresUserGesture(false);
+    } else {
+      params = const PlatformWebViewControllerCreationParams();
+    }
+    webViewController = WebViewController.fromPlatformCreationParams(params);
     return WillPopScope(
       onWillPop: () async {
         if (currentUrl != null &&
@@ -48,7 +65,7 @@ class _PaymentGatewayWebviewState extends State<PaymentGatewayWebview> {
         body: Stack(
           alignment: Alignment.center,
           children: [
-            WebView(
+           /* WebView(
               initialUrl: widget.checkoutURL,
               javascriptMode: JavascriptMode.unrestricted,
               onProgress: ((prog) {
@@ -89,6 +106,40 @@ class _PaymentGatewayWebviewState extends State<PaymentGatewayWebview> {
               //     Navigator.pop(context, false);
               //   }
               // },
+            ),*/
+            WebViewWidget(
+              controller: webViewController
+                ..setJavaScriptMode(JavaScriptMode.unrestricted)
+                ..setNavigationDelegate(
+                  NavigationDelegate(
+                    onProgress: (int prog) {
+                      if (firstLaunchDone != true) {
+                        setState(() {
+                          progress = prog;
+                        });
+                      }
+                      if (prog == 100) {
+                        firstLaunchDone = true;
+                      }
+                    },
+                    onNavigationRequest: (NavigationRequest navigation) {
+                      /*print("URL==");
+                      print(navigation.url);*/
+                      if (navigation.url.contains(widget.returnURL) &&
+                          navigation.url.contains('order_id')) {
+                        currentUrl = navigation.url;
+                        Navigator.pop(context, true);
+                        return NavigationDecision.prevent;
+                      } else if (navigation.url.contains(widget.cancelURL)) {
+                        Navigator.pop(context, false);
+                        return NavigationDecision.prevent;
+                      } else {
+                        return NavigationDecision.navigate;
+                      }
+                    },
+                  ),
+                )
+                ..loadRequest(Uri.parse(widget.checkoutURL)),
             ),
             progress == 100
                 ? const SizedBox.shrink()
