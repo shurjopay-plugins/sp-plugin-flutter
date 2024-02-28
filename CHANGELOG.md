@@ -1,3 +1,14 @@
+## 2.0.5
+
+- package Updated
+- webview Updated
+- dio Updated
+- get it Updated
+
+## 2.0.4
+
+- readme updated
+
 ## 2.0.3
 
 - readme updated

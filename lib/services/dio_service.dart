@@ -11,8 +11,10 @@ class SPDioService {
 
   Future<void> reset() async {
     BaseOptions options = BaseOptions(
-      connectTimeout: 180000,
-      receiveTimeout: 180000,
+      /*connectTimeout: 180000,
+      receiveTimeout: 180000,*/
+      connectTimeout: const Duration(seconds: 60),
+      receiveTimeout: const Duration(seconds: 60),
     );
     dio.options = options;
   }
@@ -28,8 +30,10 @@ class SPDioService {
         "Authorization": "$tokenType $token",
       },
       baseUrl: baseURL,
-      connectTimeout: 180000,
-      receiveTimeout: 180000,
+      /*connectTimeout: 180000,
+      receiveTimeout: 180000,*/
+      connectTimeout: const Duration(seconds: 60),
+      receiveTimeout: const Duration(seconds: 60),
     );
     dio.options = options;
   }
@@ -37,8 +41,10 @@ class SPDioService {
   Future<void> create({required String baseURL}) async {
     BaseOptions options = BaseOptions(
       baseUrl: baseURL,
-      connectTimeout: 180000,
-      receiveTimeout: 180000,
+      /*connectTimeout: 180000,
+      receiveTimeout: 180000,*/
+      connectTimeout: const Duration(seconds: 60),
+      receiveTimeout: const Duration(seconds: 60),
     );
     dio = Dio(options);
     dio.interceptors.add(InterceptorsWrapper(
