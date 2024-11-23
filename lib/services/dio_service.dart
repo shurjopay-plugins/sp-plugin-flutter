@@ -60,7 +60,7 @@ class SPDioService {
 
         return handler.next(options);
       },
-      onError: (DioError error, handler) async {
+      onError: (DioException error, handler) async {
         if (showPrints) {
           printer("= = = Shurjopay Error Response = = =");
           printer('Error Response: ${error.response}');

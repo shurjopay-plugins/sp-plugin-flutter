@@ -1,3 +1,9 @@
+## 2.0.6
+
+- Package update
+- WebView update
+- Android base setup update
+
 ## 2.0.5
 
 - package Updated
