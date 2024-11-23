@@ -11,7 +11,7 @@ And that's all! To know more about its usage please check the details below.
 
 ## Adding a package dependency to an app
 
-1. Open the ```pubspec.yaml``` file located inside the app folder and add ```shurjopay: ^2.0.5``` under dependencies.
+1. Open the ```pubspec.yaml``` file located inside the app folder and add ```shurjopay: ^2.0.6``` under dependencies.
 2. Run command ```flutter pub get``` to pull and download dependencies.
 
 ## Usage
