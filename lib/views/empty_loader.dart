@@ -15,7 +15,7 @@ class EmptyLoader extends StatelessWidget {
         backgroundColor: Colors.black.withOpacity(0.5),
         body: Center(
           child: loadingIndicator ??
-              const CircularProgressIndicator(color: Colors.white),
+              const CircularProgressIndicator(color: Colors.blue),
         ),
       ),
     );

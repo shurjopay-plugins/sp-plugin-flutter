@@ -65,63 +65,12 @@ class _PaymentGatewayWebviewState extends State<PaymentGatewayWebview> {
         body: Stack(
           alignment: Alignment.center,
           children: [
-           /* WebView(
-              initialUrl: widget.checkoutURL,
-              javascriptMode: JavascriptMode.unrestricted,
-              onProgress: ((prog) {
-                if (firstLaunchDone != true) {
-                  setState(() {
-                    progress = prog;
-                  });
-                }
-                if (prog == 100) {
-                  firstLaunchDone = true;
-                }
-              }),
-              navigationDelegate: (navigation) {
-                // print("URL==");
-                // print(navigation.url);
-                if (navigation.url.contains(widget.returnURL) &&
-                    navigation.url.contains('order_id')) {
-                  currentUrl = navigation.url;
-                  Navigator.pop(context, true);
-                  return NavigationDecision.prevent;
-                } else if (navigation.url.contains(widget.cancelURL)) {
-                  Navigator.pop(context, false);
-                  return NavigationDecision.prevent;
-                } else {
-                  return NavigationDecision.navigate;
-                }
-              },
-              onWebViewCreated: (controller) => webViewController = controller,
-              // onPageStarted: (String? url) {
-              //   print("URL");
-              //   print(url);
-              //   currentUrl = url;
-              //   if (url != null &&
-              //       url.contains(widget.returnURL) &&
-              //       url.contains("order_id")) {
-              //     Navigator.pop(context, true);
-              //   } else if (url != null && url.contains(widget.cancelURL)) {
-              //     Navigator.pop(context, false);
-              //   }
-              // },
-            ),*/
             WebViewWidget(
               controller: webViewController
                 ..setJavaScriptMode(JavaScriptMode.unrestricted)
                 ..setNavigationDelegate(
                   NavigationDelegate(
-                    onProgress: (int prog) {
-                      if (firstLaunchDone != true) {
-                        setState(() {
-                          progress = prog;
-                        });
-                      }
-                      if (prog == 100) {
-                        firstLaunchDone = true;
-                      }
-                    },
+                   
                     onNavigationRequest: (NavigationRequest navigation) {
                       /*print("URL==");
                       print(navigation.url);*/
@@ -141,16 +90,7 @@ class _PaymentGatewayWebviewState extends State<PaymentGatewayWebview> {
                 )
                 ..loadRequest(Uri.parse(widget.checkoutURL)),
             ),
-            progress == 100
-                ? const SizedBox.shrink()
-                : Text(
-                    'Loading $progress%',
-                    style: const TextStyle(
-                      fontSize: 16,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
+            
           ],
         ),
       ),

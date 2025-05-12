@@ -1,3 +1,12 @@
+## 2.0.8
+
+- revamp 2.0.7 
+- Package update
+- WebView update
+- Loading page Fix
+- Loading indicator change
+- Android base setup update
+
 ## 2.0.7
 
 - Package update
