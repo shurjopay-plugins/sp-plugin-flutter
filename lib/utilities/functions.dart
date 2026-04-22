@@ -19,7 +19,7 @@ Future initializeShurjopay({required String environment}) async {
   await createDioSingleton(environment);
 }
 
-getBaseUrl(String sdkType) {
+String? getBaseUrl(String sdkType) {
   if (sdkType == SPEnvironmentType.sandbox) {
     return SPBaseURL.sandbox;
   } else if (sdkType == SPEnvironmentType.live) {
@@ -32,7 +32,7 @@ getBaseUrl(String sdkType) {
   return null;
 }
 
-printer(dynamic value) {
+void printer(dynamic value) {
   if (kDebugMode) {
     print(value);
   }

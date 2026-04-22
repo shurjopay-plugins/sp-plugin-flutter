@@ -1,3 +1,13 @@
+## 2.0.9
+
+- revamp 2.0.7 
+- Package update
+- WebView update
+- Loading indicator change
+- Example ui update
+- Success screen with all status
+- Failed screen with all status
+
 ## 2.0.8
 
 - revamp 2.0.7 
