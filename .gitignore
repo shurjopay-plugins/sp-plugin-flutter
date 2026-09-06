@@ -18,7 +18,6 @@
 .idea/
 
 # Visual Studio Code related
-.vscode/
 
 # Flutter/Dart/Pub related
 **/doc/api/
@@ -817,11 +816,6 @@ tags
 
 ### https://raw.github.com/github/gitignore/340e2fe08a2356c2e3760ff58c3a9e1fddf08060/Global/VisualStudioCode.gitignore
 
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
 
 
 ### https://raw.github.com/github/gitignore/340e2fe08a2356c2e3760ff58c3a9e1fddf08060/Global/Windows.gitignore
@@ -886,3 +880,6 @@ DerivedData/
 !**/ios/**/default.pbxuser
 !**/ios/**/default.perspectivev3
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
+branch_structure.json
+temp_auto_push.bat
+temp_interactive_push.bat
